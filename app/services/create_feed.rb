@@ -1,4 +1,4 @@
-class InitializeFeed < BaseCommand
+class CreateFeed < BaseService
   def initialize(feed_url:)
     @feed_url = feed_url
   end

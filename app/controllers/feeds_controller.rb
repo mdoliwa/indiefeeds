@@ -4,7 +4,7 @@ class FeedsController < ApplicationController
   end
 
   def create
-    InitializeFeed.call(feed_url: feed_params[:url])
+    CreateFeed.call(feed_url: feed_params[:url])
 
     redirect_to new_feed_path
   end
