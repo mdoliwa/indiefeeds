@@ -1,4 +1,4 @@
-class CreateFeed < BaseService
+class CreateFeed < Callable
   def initialize(feed_url:)
     @feed_url = feed_url
   end
@@ -9,5 +9,6 @@ class CreateFeed < BaseService
     return unless feed.new_record? 
 
     feed.save!
+    Entry.create(FetchNewFeedEntries.call(feed))
   end
 end
