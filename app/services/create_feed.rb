@@ -10,6 +10,6 @@ class CreateFeed < Callable
 
     feed.save!
 
-    Entry.create(FetchNewFeedEntries.call(feed))
+    FetchNewFeedEntriesWorker.perform_async(feed.id)
   end
 end
