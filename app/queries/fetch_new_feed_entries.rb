@@ -7,16 +7,19 @@ class FetchNewFeedEntries < Callable
 
   def call
     xml = URI.open(@feed.url).read
+    entries = Feedjira.parse(xml).entries
+    guids = @feed.entries.pluck(:guid)
+    new_entries = entries.reject { |entry| guids.include?(entry.entry_id) }
 
-    Feedjira.parse(xml).entries.map do |entry|
-      @feed.entries.find_or_initialize_by(
+    new_entries.map do |entry|
+      {
         guid: entry.entry_id,
         title: entry.title,
         url: entry.url,
         author: entry.author,
         published_at: entry.published,
-        guid: entry.entry_id
-      )
-    end.select(&:new_record?).map(&:attributes).map(&:compact)
+        feed_id: @feed.id
+      }
+    end
   end
 end

@@ -9,6 +9,7 @@ class CreateFeed < Callable
     return unless feed.new_record? 
 
     feed.save!
+
     Entry.create(FetchNewFeedEntries.call(feed))
   end
 end
