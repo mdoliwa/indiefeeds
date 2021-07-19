@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class FetchNewFeedEntries < Callable
   def initialize(feed)
     @feed = feed

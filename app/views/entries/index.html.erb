@@ -1,5 +1,5 @@
 <ul>
 <% @entries.each do |entry| %>
-  <li><%= link_to entry.title, entry.url %></li>
+  <li><%= link_to entry.title, entry.url %> (<%= link_to entry.feed.website_host, entry.feed.website_url %>)</li>
 <% end %>
 <ul>

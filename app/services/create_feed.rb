@@ -10,6 +10,7 @@ class CreateFeed < Callable
 
     feed.save!
 
-    FetchNewFeedEntriesWorker.perform_async(feed.id)
+    UpdateWebsiteUrlWorker.perform_async(feed.id)
+    AddNewFeedEntriesWorker.perform_async(feed.id)
   end
 end
