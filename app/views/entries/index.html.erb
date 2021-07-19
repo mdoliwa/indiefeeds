@@ -1,5 +1,5 @@
 <ul>
-<% @entries.each do |entry| %>
-  <li><%= link_to entry.title, entry.url %> (<%= link_to entry.feed.website_host, feed_entries_path(entry.feed) %>)</li>
+<% @entries.each.with_index(1) do |entry, index| %>
+  <li><span class="text-gray-500 inline-block w-5 text-right mr-2"><%= index %>.</span> <%= link_to entry.title, entry.url %> <span class="text-gray-500 text-base">(<%= link_to entry.feed.website_host, feed_entries_path(entry.feed) %>)</span></li>
 <% end %>
 <ul>
