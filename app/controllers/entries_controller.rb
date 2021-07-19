@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
   def index
-    @entries = Entry.all.includes(:feed)
+    @entries = params[:feed_id] ? FeedEntries.call(params[:feed_id]) : AllEntries.call
   end
 end
