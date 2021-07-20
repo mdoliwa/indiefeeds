@@ -2,9 +2,9 @@ class UpdateWebsiteUrlWorker
   include Sidekiq::Worker
 
   def perform(id)
-    feed = Feed.find(id)
-    website_url = FetchWebsiteUrl.call(feed)
+    website = Website.find(id)
+    website_url = FetchWebsiteUrl.call(website)
 
-    feed.update(website_url: website_url)
+    website.update(url: website_url)
   end
 end

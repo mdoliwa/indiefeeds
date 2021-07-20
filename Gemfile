@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'feedjira'
 gem 'sidekiq'
+gem 'dry-struct'
 
 group :development, :test do
   gem 'pry'

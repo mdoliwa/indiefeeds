@@ -1,0 +1,5 @@
+<ul>
+<% @posts.each.with_index(1) do |post, index| %>
+  <li><span class="text-gray-500 inline-block w-5 text-right mr-2"><%= index %>.</span> <%= link_to post.title, post.url %> <span class="text-gray-500 text-base">(<%= link_to post.website.website_host, website_posts_path(post.website) %>)</span></li>
+<% end %>
+<ul>

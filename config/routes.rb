@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'entries#index'
+  root to: 'posts#index'
 
-  resources :feeds, only: [:new, :create] do
-    resources :entries, only: :index
+  resources :websites, only: [:new, :create] do
+    resources :posts, only: :index
   end
 
-  resources :entries, only: :index
+  resources :posts, only: :index
 end
