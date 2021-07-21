@@ -1,5 +1,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
+.pagy-nav.pagination {
+  @apply ml-5;
+  @apply mb-4;
+}
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled {
+  @apply hidden;
+}
+
+.pagy-nav .page.active {
+  @apply font-bold;
+  @apply text-blue-800;
+}
+
+.pagy-nav .page {
+  @apply mr-2;
+}
+
+
 /* Add any custom CSS here */
 @import "tailwindcss/utilities";
