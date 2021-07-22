@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'feedjira'
 gem 'sidekiq'
 gem 'pagy'
+gem 'devise'
 
 group :development, :test do
   gem 'pry'
