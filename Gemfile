@@ -32,6 +32,7 @@ gem 'feedjira'
 gem 'sidekiq'
 gem 'pagy'
 gem 'devise'
+gem 'action_policy'
 
 group :development, :test do
   gem 'pry'
