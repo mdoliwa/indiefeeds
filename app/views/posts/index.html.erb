@@ -2,7 +2,13 @@
 <% @posts.each do |post| %>
   <li>
     <div class="flex items-start">
-      <div class="text-xl text-gray-500 mr-1">&#9650;</div>
+      <div class="text-xl text-gray-500 mr-1 cursor-pointer" 
+           data-controller='upvote'
+           data-action='click->upvote#upvote'
+           data-upvote-target='button'
+           data-upvote-id-value="<%= post.id %>">
+        &#9650;
+      </div>
       <div class="mb-3">
         <%= link_to post.title, post.url %> 
         <span class="text-gray-500 text-base">
