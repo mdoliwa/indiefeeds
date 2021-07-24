@@ -4,6 +4,12 @@ export default class extends Controller {
   static targets = ["button"];
   static values = { upvoted: Boolean, id: Number }
 
+  connect() {
+    if (this.upvotedValue) {
+      this.buttonTarget.classList.add('text-blue-500')
+    }
+  }
+
   upvote() {
     this.sendUpvoteRequest()
     this.toggle()
