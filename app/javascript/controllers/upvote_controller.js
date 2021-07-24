@@ -17,6 +17,7 @@ export default class extends Controller {
     let baseUrl = window.location.protocol + '//' + window.location.host
     let method = this.upvotedValue ? 'DELETE' : 'POST'
     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
     fetch(`${baseUrl}/posts/${this.idValue}/upvotes`, {
       method: method,
       headers: { 'X-CSRF-Token': csrfToken },

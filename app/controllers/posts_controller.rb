@@ -2,6 +2,9 @@ class PostsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @posts = pagy(params[:website_id] ? WebsitePosts.call(params[:website_id]) : AllPosts.call, items: 25)
+    @posts = Post.all.includes(:website).order(published_at: :desc)
+    @posts = @posts.where(website: website) if params[:website_id]
+
+    @pagy, @posts = pagy(@posts)
   end
 end
