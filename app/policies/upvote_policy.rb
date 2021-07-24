@@ -1,9 +1,9 @@
 class UpvotePolicy < ApplicationPolicy
   def create?
-    user.presence
+    user.present?
   end
 
   def destroy?
-    user.presence
+    user.present?
   end
 end
