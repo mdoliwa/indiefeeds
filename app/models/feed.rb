@@ -1,10 +1,6 @@
 require 'open-uri'
 
 class Feed
-  def self.for(website)
-    new(website)
-  end
-
   def initialize(website)
     @website = website
   end

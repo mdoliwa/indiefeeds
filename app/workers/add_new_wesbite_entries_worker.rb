@@ -5,6 +5,6 @@ class AddNewWebsiteEntriesWorker
     website = Website.find(id)
     new_posts = FetchNewWebsiteEntries.call(website)
 
-    Post.create(new_posts)
+    posts = Post.create(new_posts)
   end
 end

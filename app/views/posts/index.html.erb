@@ -19,7 +19,7 @@
           (<%= link_to post.website.website_host, website_posts_path(post.website) %>)
         </span>
         <div class="text-sm text-gray-500">
-          59 points | published 58 minutes ago | 9 comments
+          59 points | published <%= distance_of_time_in_words(post.published_at, Time.zone.now) %> ago | 9 comments
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ class FetchNewWebsiteEntries < Callable
   def call
     guids = @website.entries.pluck(:guid)
 
-    Feed.for(@website).entries
+    Feed.new(@website).entries
       .reject { |entry| guids.include?(entry.guid) }
       .map do |entry|
       {
