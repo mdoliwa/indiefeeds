@@ -33,6 +33,7 @@ gem 'sidekiq'
 gem 'pagy'
 gem 'devise'
 gem 'action_policy'
+gem 'ancestry'
 
 group :development, :test do
   gem 'pry'

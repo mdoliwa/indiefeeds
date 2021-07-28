@@ -8,4 +8,8 @@ class PostsController < ApplicationController
 
     @pagy, @posts = pagy(@posts)
   end
+
+  def show
+    @post = current_user ? Post.upvoted_by(current_user).find(params[:id]) : Post.find(params[:id])
+  end
 end
