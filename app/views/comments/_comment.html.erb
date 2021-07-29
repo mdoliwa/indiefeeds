@@ -10,7 +10,7 @@
         <%= simple_format comment.body %>
       </div>
       <div class='underline text-sm mt-2'>
-        <%= link_to 'reply', "#" %>
+        <%= link_to 'reply', new_post_comment_comment_path(comment.post, comment) %>
       </div>
       <% if comment.children.present? %>
         <div class='ml-6 mt-1'>
