@@ -16,7 +16,7 @@
       (<%= link_to post.website.website_host, website_posts_path(post.website) %>)
     </span>
     <div class="text-sm text-gray-500">
-      <%= pluralize(post.upvotes_count, 'point') %> | published <%= distance_of_time_in_words(post.published_at, Time.zone.now) %> ago | <%= link_to "9 comments", post %>
+      <%= pluralize(post.upvotes_count, 'point') %> | published <%= distance_of_time_in_words(post.published_at, Time.zone.now) %> ago | <%= link_to pluralize(post.comments_count, 'comment'), post %>
     </div>
   </div>
 </div>
