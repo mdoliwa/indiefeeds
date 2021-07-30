@@ -2,7 +2,7 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   static targets = ["button"];
-  static values = { upvoted: Boolean, id: Number }
+  static values = { upvoted: Boolean, id: Number, resource: String }
 
   connect() {
     if (this.upvotedValue) {
@@ -24,7 +24,7 @@ export default class extends Controller {
     let method = this.upvotedValue ? 'DELETE' : 'POST'
     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-    fetch(`${baseUrl}/posts/${this.idValue}/upvotes`, {
+    fetch(`${baseUrl}/${this.resourceValue}/${this.idValue}/upvotes`, {
       method: method,
       headers: { 'X-CSRF-Token': csrfToken },
     })

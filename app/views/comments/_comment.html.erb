@@ -1,20 +1,32 @@
-<div class='flex <%= comment.is_root? ? "mb-3" : "" %> items-baseline'>
-    <span class='text-xl text-gray-400 mr-1 cursor-pointer'>&#9650;</span>
+<div class="flex <%= comment.is_root? ? "mb-3" : "" %> items-baseline">
+  <span class="text-xl text-gray-400 mr-1 cursor-pointer"
+    <% if user_signed_in? %>
+       data-controller="upvote"
+       data-action="click->upvote#upvote"
+       data-upvote-target="button"
+       data-upvote-upvoted-value="<%= comment.upvoted %>"
+       data-upvote-id-value="<%= comment.id %>"
+       data-upvote-resource-value="comments"
+     <% end %>
+   >
+    &#9650;
+  </span>
+
   <div>
-    <div class='text-gray-500 text-sm'>
-      <%= link_to comment.user.name, '#', class: 'hover:underline' %> <%= distance_of_time_in_words(comment.created_at, Time.zone.now)  %> ago 
-      <span class='cursor-pointer'>[–]</span>
+    <div class="text-gray-500 text-sm">
+      <%= link_to comment.user.name, '#', class: "hover:underline" %> <%= distance_of_time_in_words(comment.created_at, Time.zone.now)  %> ago 
+      <span class="cursor-pointer">[–]</span>
     </div>
     <div>
-      <div class='text-lg'>
+      <div class="text-lg">
         <%= simple_format comment.body %>
       </div>
-      <div class='underline text-sm mt-2'>
+      <div class="underline text-sm mt-2">
         <%= link_to 'reply', new_post_comment_comment_path(comment.post, comment) %>
       </div>
       <% if comment.children.present? %>
-        <div class='ml-6 mt-1'>
-          <%= render partial: 'comments/comment', collection: comment.children %>
+        <div class="ml-6 mt-1">
+          <%= render partial: 'comments/comment', collection: comment.children.upvoted_by(current_user) %>
         </div>
       <% end %>
     </div>

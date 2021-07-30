@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_201542) do
+ActiveRecord::Schema.define(version: 2021_07_30_203314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_201542) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
+    t.integer "upvotes_count", default: 0
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
@@ -43,10 +44,11 @@ ActiveRecord::Schema.define(version: 2021_07_29_201542) do
 
   create_table "upvotes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+    t.string "upvotable_type", null: false
+    t.bigint "upvotable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_upvotes_on_post_id"
+    t.index ["upvotable_type", "upvotable_id"], name: "index_upvotes_on_upvotable"
     t.index ["user_id"], name: "index_upvotes_on_user_id"
   end
 
@@ -73,6 +75,5 @@ ActiveRecord::Schema.define(version: 2021_07_29_201542) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "websites"
-  add_foreign_key "upvotes", "posts"
   add_foreign_key "upvotes", "users"
 end

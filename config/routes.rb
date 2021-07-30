@@ -11,7 +11,13 @@ Rails.application.routes.draw do
     resources :comments do
       resources :comments, only: [:new, :create]
     end
+  end
 
+  resources :posts, only: [] do
+    resource :upvotes, only: [:create, :destroy]
+  end
+
+  resources :comments, only: [] do
     resource :upvotes, only: [:create, :destroy]
   end
 end
