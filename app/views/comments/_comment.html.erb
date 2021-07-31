@@ -1,13 +1,17 @@
-<div class="flex <%= comment.is_root? ? "mb-3" : "" %> items-baseline">
+<div class="flex <%= comment.is_root? ? "mb-3" : "" %> items-baseline"
+     data-controller="toggle-comment"
+     data-toggle-comment-expanded-value="true"
+     data-toggle-comment-children-count-value="<%= comment.descendants.count + 1 %>"
+ >
   <span class="text-xl text-gray-400 mr-1 cursor-pointer"
-    <% if user_signed_in? %>
-       data-controller="upvote"
-       data-action="click->upvote#upvote"
-       data-upvote-target="button"
-       data-upvote-upvoted-value="<%= comment.upvoted %>"
-       data-upvote-id-value="<%= comment.id %>"
-       data-upvote-resource-value="comments"
-     <% end %>
+        <% if user_signed_in? %>
+           data-controller="upvote"
+           data-action="click->upvote#upvote"
+           data-upvote-target="button"
+           data-upvote-upvoted-value="<%= comment.upvoted %>"
+           data-upvote-id-value="<%= comment.id %>"
+           data-upvote-resource-value="comments"
+         <% end %>
    >
     &#9650;
   </span>
@@ -15,9 +19,12 @@
   <div>
     <div class="text-gray-500 text-sm">
       <%= link_to comment.user.name, '#', class: "hover:underline" %> <%= distance_of_time_in_words(comment.created_at, Time.zone.now)  %> ago 
-      <span class="cursor-pointer">[–]</span>
+      <span class="cursor-pointer"
+            data-action="click->toggle-comment#toggle"
+            data-toggle-comment-target="toggleButton"
+      >[–]</span>
     </div>
-    <div>
+    <div data-toggle-comment-target="togglable">
       <div class="text-lg">
         <%= simple_format comment.body %>
       </div>
