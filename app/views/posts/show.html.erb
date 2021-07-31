@@ -10,9 +10,9 @@
   </div>
 <% end %>
 
-<% if @post.comments.upvoted_by(current_user).present? %>
+<% if @post.comments.present? %>
   <div class='mt-4'>
-    <% @post.comments.upvoted_by(current_user).roots.each do |comment| %>
+    <% @post.comments.upvoted_by(current_user).ranked.roots.each do |comment| %>
       <%= render comment %>
     <% end %>
   </div>

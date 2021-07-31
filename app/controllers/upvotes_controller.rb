@@ -3,7 +3,6 @@ class UpvotesController < ApplicationController
   before_action :set_upvotable
 
   def create
-    binding.pry
     upvote = Upvote.new(user: current_user, upvotable: @upvotable)
 
     status = upvote.save ? :created : :forbidden
