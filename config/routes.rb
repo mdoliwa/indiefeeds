@@ -20,4 +20,11 @@ Rails.application.routes.draw do
   resources :comments, only: [] do
     resource :upvotes, only: [:create, :destroy]
   end
+
+  resources :users, only: [:show] do
+    scope module: 'users' do
+      resources :comments, only: :index
+      resources :upvoted_posts, only: :index
+    end
+  end
 end

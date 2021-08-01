@@ -1,6 +1,6 @@
 <ul>
 <% @posts.each do |post| %>
-  <li> <%= render post %> </li>
+  <li> <%= render 'posts/post', post: post %> </li>
 <% end %>
 <ul>
 

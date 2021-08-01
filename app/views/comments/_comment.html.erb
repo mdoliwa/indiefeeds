@@ -18,7 +18,7 @@
 
   <div>
     <div class="text-gray-500 text-sm">
-      <%= link_to comment.user.name, '#', class: "hover:underline" %> <%= distance_of_time_in_words(comment.created_at, Time.zone.now)  %> ago 
+      <%= link_to comment.user.name, user_path(comment.user), class: "hover:underline" %> <%= distance_of_time_in_words(comment.created_at, Time.zone.now)  %> ago 
       <span class="cursor-pointer"
             data-action="click->toggle-comment#toggle"
             data-toggle-comment-target="toggleButton"
