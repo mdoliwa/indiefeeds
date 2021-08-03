@@ -2,14 +2,13 @@ class PostsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @posts = current_user ? Post.upvoted_by(current_user) : Post.all
-    @posts = @posts.includes(:website).ranked
+    @posts = Post.includes(:website).upvoted_by(current_user).ranked
     @posts = @posts.where(website: website) if params[:website_id]
 
     @pagy, @posts = pagy(@posts)
   end
 
   def show
-    @post = current_user ? Post.upvoted_by(current_user).find(params[:id]) : Post.find(params[:id])
+    @post = Post.upvoted_by(current_user).find(params[:id])
   end
 end
