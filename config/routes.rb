@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :new_posts, only: [:index]
+
   resources :posts, only: [] do
     resource :upvotes, only: [:create, :destroy]
   end
