@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   resources :websites, only: [:new, :create] do
-    resources :posts, only: :index
+    scope module: 'websites' do
+      resources :posts, only: :index
+    end
   end
 
   resources :posts, only: [:index, :show] do
