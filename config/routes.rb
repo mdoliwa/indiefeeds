@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     scope module: 'users' do
       resources :comments, only: :index
       resources :upvoted_posts, only: :index
+      resources :upvoted_comments, only: :index
     end
   end
 end

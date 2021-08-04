@@ -8,7 +8,10 @@
     <p><%= distance_of_time_in_words(@user.created_at, Time.zone.now) %> ago</p>
     <div class='mt-2'>
       <p><%= link_to "comments", user_comments_path(@user), class: "underline" %></p>
-      <p><%= link_to "upvoted", user_upvoted_posts_path(@user), class: "underline" %></p>
+      <% if @user == current_user %>
+        <p><%= link_to "upvoted posts", user_upvoted_posts_path(@user), class: "underline" %></p>
+        <p><%= link_to "upvoted comments", user_upvoted_comments_path(@user), class: "underline" %></p>
+      <% end %>
     </div>
   </div>
 </div>

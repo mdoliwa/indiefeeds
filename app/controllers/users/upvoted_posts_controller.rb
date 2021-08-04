@@ -3,9 +3,12 @@ module Users
     include Pagy::Backend
 
     def index
-      @posts = current_user ? Post.upvoted_by(current_user) : Post.all
-      @posts = @posts.includes(:website).ranked
-      @posts = @posts.joins(:upvotes).where(upvotes: { user_id: params[:user_id]})
+      @posts = Post.includes(:website)
+                   .upvoted_by(current_user)
+                   .ranked
+                   .joins(:upvotes)
+                   .where(upvotes: { user_id: params[:user_id]})
+                   .order('upvotes.created_at DESC')
 
       @pagy, @posts = pagy(@posts)
 
