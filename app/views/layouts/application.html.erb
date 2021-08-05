@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Indiefeeds</title>
+    <title>IndieFeeds.com</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,8 +16,11 @@
       <div class="flex items-baseline">
         <%= link_to "IndieFeeds.com", root_path, class: 'text-xl font-medium' %>
         <div class="ml-4">
-          <%= link_to "new", new_posts_path, class: 'mr-2' %>
+          <%= link_to "new", new_posts_path %>
           <%= link_to "feeds", feeds_path %>
+          <% if allowed_to?(:create?, Feed) %>
+            <%= link_to "new feed", new_feed_path %>
+          <% end %>
         </div>
       </div>
       <div>

@@ -33,5 +33,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :feeds, only: :index
+  resources :feeds, only: [:index, :new, :create]
 end
