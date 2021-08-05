@@ -1,0 +1,18 @@
+<ul>
+  <% @websites.each do |website| %>
+    <li class="mb-4">
+      <div class="flex items-center">
+        <%= link_to website.title, website.url %>
+        <div class="text-gray-500 text-base ml-1">
+          (<%= link_to website.website_host, website_posts_path(website) %>)
+        </div>
+        <%= link_to website.feed_url, class: "ml-2" do %>
+          <%= image_tag 'feed_icon', class: "w-4 h-4" %>
+        <% end %>
+      </div>
+      <div class="text-sm text-gray-500">
+        <%= website.description %>
+      </div>
+    </li>
+  <% end %>
+</ul>

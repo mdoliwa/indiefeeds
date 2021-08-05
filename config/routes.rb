@@ -32,4 +32,6 @@ Rails.application.routes.draw do
       resources :upvoted_comments, only: :index
     end
   end
+
+  resources :feeds, only: :index
 end

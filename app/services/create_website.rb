@@ -10,7 +10,7 @@ class CreateWebsite < Callable
 
     website.save!
 
-    UpdateWebsiteUrlWorker.perform_async(website.id)
+    UpdateWebsiteWorker.perform_async(website.id)
     AddNewWebsiteEntriesWorker.perform_async(website.id)
   end
 end

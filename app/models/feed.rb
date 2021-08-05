@@ -18,11 +18,12 @@ class Feed
     end
   end
 
-  def website_url
-    feed.url
-  end
-
-  def guid
+  def website_params
+    {
+      url: feed.url,
+      title: feed.title,
+      description: feed.description
+    }
   end
 
   private
