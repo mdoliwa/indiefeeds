@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_202144) do
+ActiveRecord::Schema.define(version: 2021_08_06_203749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 2021_08_05_202144) do
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "url"
+    t.bigint "website_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["website_id"], name: "index_feeds_on_website_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -66,7 +74,6 @@ ActiveRecord::Schema.define(version: 2021_08_05_202144) do
   end
 
   create_table "websites", force: :cascade do |t|
-    t.string "feed_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "url"
@@ -76,6 +83,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_202144) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "feeds", "websites"
   add_foreign_key "posts", "websites"
   add_foreign_key "upvotes", "users"
 end

@@ -1,36 +1,48 @@
-require 'open-uri'
+class Feed < ApplicationRecord
+  belongs_to :website, optional: true
 
-class Feed
-  def initialize(website)
-    @website = website
+  def new_entries
+    guids = website.posts.pluck(:guid)
+
+    entries
+      .reject { |entry| guids.include?(entry[:guid]) }
+      .map do |entry|
+        {
+          guid: entry[:guid],
+          title: entry[:title],
+          url: entry[:url],
+          author: entry[:author],
+          published_at: entry[:published_at],
+        }
+      end
+
   end
 
   def entries
-    feed.entries.map do |entry|
-      OpenStruct.new(
+    source.entries.map do |entry|
+      {
         guid: entry.entry_id,
         title: entry.title,
         url: entry.url,
         author: entry.author,
-        published_at: entry.published,
-        website_id: @website.id
-      )
+        published_at: entry.published
+      }
     end
   end
 
   def website_params
     {
-      url: feed.url,
-      title: feed.title,
-      description: feed.description
+      url: source.url,
+      title: source.title,
+      description: source.description
     }
   end
 
   private
 
-  def feed
-    @feed ||= Feedjira.parse(
-      URI.open(@website.feed_url).read
+  def source 
+    @source ||= Feedjira.parse(
+      URI.open(url).read
     )
   end
 end

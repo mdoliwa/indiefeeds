@@ -1,6 +1,6 @@
 class CreateWebsite < Callable
-  def initialize(website_url:)
-    @website_url = website_url
+  def initialize(feed)
+    @feed = feed
   end
 
   def call

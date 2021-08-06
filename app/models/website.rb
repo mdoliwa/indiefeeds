@@ -1,7 +1,8 @@
 class Website < ApplicationRecord
   has_many :posts
+  has_one :feed
 
   def website_host
-    URI.parse(feed_url).host.downcase
+    URI.parse(url).host.downcase
   end
 end
