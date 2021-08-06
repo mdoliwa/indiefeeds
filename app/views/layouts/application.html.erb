@@ -16,10 +16,10 @@
       <div class="flex items-baseline">
         <%= link_to "IndieFeeds.com", root_path, class: 'text-xl font-medium' %>
         <div class="ml-4">
-          <%= link_to "new", new_posts_path %>
-          <%= link_to "feeds", feeds_path %>
+          <%= link_to "New Posts", new_posts_path, class: 'mr-1' %> |
+          <%= link_to "Feeds", feeds_path, class: 'ml-1 mr-1' %>
           <% if allowed_to?(:create?, Feed) %>
-            <%= link_to "new feed", new_feed_path %>
+            | <%= link_to "New Feed", new_feed_path, class: 'ml-1' %>
           <% end %>
         </div>
       </div>
