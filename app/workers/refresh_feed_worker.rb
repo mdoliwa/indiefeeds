@@ -1,4 +1,4 @@
-class RefreshWebsiteWorker
+class RefreshFeedWorker
   include Sidekiq::Worker
 
   def perform(feed_id)

@@ -34,6 +34,7 @@ gem 'pagy'
 gem 'devise'
 gem 'action_policy'
 gem 'ancestry'
+gem 'sidekiq-scheduler'
 
 group :development, :test do
   gem 'pry'

@@ -7,7 +7,7 @@ class FeedsController < ApplicationController
     @feed = Feed.new(feed_params)
     return render :new unless @feed.save
 
-    RefreshWebsiteWorker.perform_async(@feed.id)
+    RefreshFeedWorker.perform_async(@feed.id)
     redirect_to root_path
   end
 
