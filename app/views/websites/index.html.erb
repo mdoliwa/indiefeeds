@@ -16,3 +16,8 @@
     </li>
   <% end %>
 </ul>
+
+
+<% if @pagy.pages > 1 %>
+  <%== pagy_nav(@pagy) %>
+<% end %>
