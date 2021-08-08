@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= link_to current_user.name, current_user %> 
+  <%= link_to current_user.name, current_user, class: "#{current_page?(user_path(current_user)) && 'text-red-900'}" %> 
 <% else %>
   <%= link_to('Sign Up', new_user_registration_path, class: 'mr-1') %>
 <% end %> |
