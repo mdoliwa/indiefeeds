@@ -1,8 +1,4 @@
 class FeedsController < ApplicationController
-  def index
-    @websites = Website.all.includes(:feed)
-  end
-
   def new
     @feed = Feed.new
   end

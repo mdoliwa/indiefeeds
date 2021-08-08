@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'posts#index'
 
-  resources :websites, only: [:new, :create] do
+  resources :websites, only: [:index] do
     scope module: 'websites' do
       resources :posts, only: :index
     end
@@ -33,5 +33,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :feeds, only: [:index, :new, :create]
+  resources :feeds, only: [:new, :create]
 end
