@@ -11,6 +11,6 @@ RUN apt-get update && apt-get install -y yarn
 
 COPY . ./
 
-RUN bin/rails assets:precompile
+RUN RAILS_ENV=production bin/rails assets:precompile
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
