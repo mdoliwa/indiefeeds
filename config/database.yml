@@ -18,6 +18,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
+  password: <%= ENV['INDIEFEEDS_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -84,4 +85,3 @@ production:
   <<: *default
   database: indiefeeds_production
   username: indiefeeds
-  password: <%= ENV['INDIEFEEDS_DATABASE_PASSWORD'] %>
