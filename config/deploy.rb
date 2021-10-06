@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 # Change these
-server '147.182.237.56', port: 3000, roles: [:web, :app, :db], primary: true
+server '147.182.237.56', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:mdoliwa/indiefeeds.git'
 set :application,     'indiefeeds'
@@ -25,6 +25,7 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+set :rvm_custom_path, '/usr/share/rvm'
 
 ## Defaults:
 # set :scm,           :git
@@ -36,6 +37,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 ## Linked Files & Directories (Default None):
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_files, %w{config/master.key}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
