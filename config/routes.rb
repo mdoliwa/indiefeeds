@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'hello#index'
   devise_for :users
 
   root to: 'posts#index'
