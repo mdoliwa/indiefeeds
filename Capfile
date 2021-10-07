@@ -41,6 +41,7 @@ install_plugin Capistrano::Puma::Nginx
 require "capistrano/rails"
 
 require "capistrano/sidekiq"
+install_plugin Capistrano:Sidekiq
 install_plugin Capistrano::Sidekiq::Systemd
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
