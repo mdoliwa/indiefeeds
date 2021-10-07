@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'hello/index'
   root to: 'hello#index'
   devise_for :users
 
-  #root to: 'posts#index'
+  root to: 'posts#index'
 
   resources :websites, only: [:index] do
     scope module: 'websites' do
