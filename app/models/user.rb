@@ -6,6 +6,6 @@ class User < ApplicationRecord
   has_many :comments
 
   def admin?
-    email == 'bot@indiefeeds.com'
+    email == 'bot@indiefeeds.com' || email == 'mdoliwa@gmail.com'
   end
 end

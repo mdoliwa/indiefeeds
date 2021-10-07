@@ -27,7 +27,8 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 set :rvm_custom_path, '/usr/share/rvm'
-
+set :sidekiq_user, :deploy
+set :sidekiq_service_unit_user, :system
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
