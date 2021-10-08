@@ -1,6 +1,8 @@
 class Feed < ApplicationRecord
   belongs_to :website, optional: true
 
+  validates :url, uniqueness: true
+
   def new_entries
     guids = website.posts.pluck(:guid)
 
@@ -28,7 +30,7 @@ class Feed < ApplicationRecord
 
   private
 
-  def source 
+  def source
     @source ||= Feedjira.parse(
       URI.open(url).read
     )
