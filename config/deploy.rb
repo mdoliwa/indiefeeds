@@ -87,6 +87,19 @@ namespace :deploy do
   after  :finishing,    :restart
 end
 
+namespace :rails do
+  desc 'Open a rails console `cap [staging] rails:console [server_index default: 0]`'
+  task :console do
+    server = roles(:app)[ARGV[2].to_i]
+
+    puts "Opening a console on: #{server.hostname}...."
+
+    cmd = "ssh #{fetch(:user)}@#{server.hostname} -t 'cd #{fetch(:deploy_to)}/current && RAILS_ENV=#{fetch(:rails_env)} #{fetch(:rvm_path)}/bin/rvm default do bundle exec rails console'"
+
+    exec cmd
+  end
+end
+
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
