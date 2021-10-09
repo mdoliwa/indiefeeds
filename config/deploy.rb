@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 # Change these
-server '147.182.237.56', port: 22, user: 'deploy', roles: [:web, :app, :db], primary: true
+server '147.182.237.56', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:mdoliwa/indiefeeds.git'
 set :application,     'indiefeeds'

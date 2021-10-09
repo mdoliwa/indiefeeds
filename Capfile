@@ -38,34 +38,11 @@ install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Systemd
 install_plugin Capistrano::Puma::Nginx
 
-#require "capistrano/rails"
-require 'capistrano/bundler' # Rails needs Bundler, right?
-#require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
-
-require 'capistrano/local_precompile'
+require "capistrano/rails"
 
 require "capistrano/sidekiq"
 install_plugin Capistrano::Sidekiq  # Default sidekiq tasks
 install_plugin Capistrano::Sidekiq::Systemd
-
-namespace :load do
-  task :defaults do
-    before "deploy:assets:prepare", "remove_rvm_prefix"
-    after "deploy:assets:prepare", "restore_rvm_prefix"
-  end
-end
-
-task "remove_rvm_prefix" do
-  i = SSHKit.config.command_map.prefix[:rake].index { |x| x =~ /rvm/ }
-  $removed_rvm_prefix = [i, SSHKit.config.command_map.prefix[:rake].delete_at(i)] if i
-end
-
-task "restore_rvm_prefix" do
-  if $removed_rvm_prefix
-    SSHKit.config.command_map.prefix[:rake].insert(*$removed_rvm_prefix)
-  end
-end
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
