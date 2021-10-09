@@ -16,7 +16,7 @@
       <div class="flex items-baseline">
         <%= link_to "IndieFeeds.com", root_path, class: 'text-xl font-medium' %>
         <div class="ml-4">
-          <%= link_to "Latest posts", new_posts_path, class: "mr-1 #{current_page?(new_posts_path) && 'text-red-900'}" %> |
+          <%= link_to "New posts", new_posts_path, class: "mr-1 #{current_page?(new_posts_path) && 'text-red-900'}" %> |
           <%= link_to "Websites", websites_path, class: "ml-1 mr-1 #{current_page?(websites_path) && 'text-red-900'}" %>
           <% if allowed_to?(:create?, Feed) %>
             | <%= link_to "New Feed", new_feed_path, class: "ml-1 #{current_page?(new_feed_path) && 'text-red-900'}" %>
