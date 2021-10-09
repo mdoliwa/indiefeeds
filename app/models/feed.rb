@@ -37,6 +37,6 @@ class Feed < ApplicationRecord
   end
 
   def entry_url(entry)
-    URI.parse(entry.url).host.presence || URI.join(website.url, entry.url).to_s
+    URI.parse(entry.url).host.present? ? entry.url : URI.join(website.url, entry.url).to_s
   end
 end
