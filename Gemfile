@@ -37,6 +37,7 @@ gem 'ancestry'
 gem 'sidekiq-scheduler'
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'pry'
 end
 
