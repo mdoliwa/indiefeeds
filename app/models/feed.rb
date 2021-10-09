@@ -13,7 +13,7 @@ class Feed < ApplicationRecord
         {
           guid: entry.entry_id,
           title: entry.title,
-          url: entry.url,
+          url: entry_url(entry),
           author: entry.author,
           published_at: entry.published,
         }
@@ -34,5 +34,9 @@ class Feed < ApplicationRecord
     @source ||= Feedjira.parse(
       URI.open(url).read
     )
+  end
+
+  def entry_url(entry)
+    URI.parse(entry.url).host.presence || URI.join(website.host, entry.url).to_s
   end
 end
