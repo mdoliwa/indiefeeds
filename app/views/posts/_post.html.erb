@@ -18,7 +18,7 @@
     </span>
     <div class="text-sm text-gray-500">
       <%= pluralize(post.upvotes_count, 'point') %> | published <%= distance_of_time_in_words(post.published_at, Time.zone.now) %> ago | <%= link_to pluralize(post.comments_count, 'comment'), post %>
-      <% if current_user.admin? %>
+      <% if current_user.present? && current_user.admin? %>
         <% if post.hidden? %>
           | <%= link_to "unhide", post_path(post, post: { hidden: false }), method: :patch %>
         <% else %>
