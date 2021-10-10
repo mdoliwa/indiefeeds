@@ -5,8 +5,9 @@ module Websites
     def index
       @posts = Post.includes(:website)
         .upvoted_by(current_user)
-        .ranked
         .where(website_id: params[:website_id])
+        .where(hidden: false)
+        .ranked
 
       @pagy, @posts = pagy(@posts)
 
