@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: [:index, :show] do
+  resources :posts, only: [:index, :show, :update] do
     resources :comments do
       resources :comments, only: [:new, :create]
     end
