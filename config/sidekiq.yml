@@ -1,4 +1,4 @@
 :schedule:
   fetch_new_entries:
     every: 1 hour
-    class: FetchNewFeedEntries
+    class: ScheduleFetchingFeedEntries
